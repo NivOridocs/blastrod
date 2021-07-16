@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Invoker;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PistonBlock;
 import net.minecraft.block.piston.PistonHandler;
@@ -46,12 +45,12 @@ public abstract class PistonHandlerOverwrite {
 	private Direction pistonDirection;
 
 	@Invoker("isBlockSticky")
-	private static boolean isBlockSticky(Block block) {
+	private static boolean invokeIsBlockSticky(BlockState state) {
 		throw new AssertionError();
 	}
 
 	@Invoker("isAdjacentBlockStuck")
-	private static boolean isAdjacentBlockStuck(Block block, Block block2) {
+	private static boolean invokeIsAdjacentBlockStuck(BlockState state, BlockState adjacentState) {
 		throw new AssertionError();
 	}
 
@@ -125,14 +124,14 @@ public abstract class PistonHandlerOverwrite {
 
 	private boolean caseSticky(Queue<Pair<BlockPos, Direction>> queue, BlockPos blockPos,
 			BlockState blockState) {
-		if (isBlockSticky(blockState.getBlock())) {
+		if (invokeIsBlockSticky(blockState)) {
 			BlockPos targetPos;
 			BlockState targetState;
 			for (Direction direction : Direction.values()) {
 				targetPos = blockPos.offset(direction);
 				if (direction != this.motionDirection) {
 					targetState = this.world.getBlockState(targetPos);
-					if (isAdjacentBlockStuck(blockState.getBlock(), targetState.getBlock())) {
+					if (invokeIsAdjacentBlockStuck(blockState, targetState)) {
 						queue.offer(new Pair<>(targetPos, direction));
 					}
 				} else {
