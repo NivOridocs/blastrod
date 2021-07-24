@@ -3,7 +3,7 @@
   "id": "blastrod",
   "version": "${version}",
   "name": "Blast Rod",
-  "description": "Adds the new Blast Rod that breaks every movable block is pushed into.",
+  "description": "Adds a new Blast Rod block that breaks every movable block it is pushed into.",
   "authors": [
     "Niv Oridocs"
   ],
@@ -26,7 +26,9 @@
     "blastrod.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.1",
-    "fabric": "*"
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
   }
 }
