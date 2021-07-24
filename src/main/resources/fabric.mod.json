@@ -3,7 +3,7 @@
   "id": "blastrod",
   "version": "${version}",
   "name": "Blast Rod",
-  "description": "Adds the new Blast Rod that breaks every movable block is pushed into.",
+  "description": "Adds a new Blast Rod block that breaks every movable block it is pushed into.",
   "authors": [
     "Niv Oridocs"
   ],

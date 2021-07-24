@@ -98,7 +98,7 @@ task publishModrinth (type: TaskModrinthUpload) {
 	}
 
 	token = System.getenv("MODRINTH")
-	// projectId = ''
+	projectId = 'MDJBHdk7'
 	versionNumber = project.version
 	versionName = "Blastrod ${project.version}"
 	uploadFile = remapJar
